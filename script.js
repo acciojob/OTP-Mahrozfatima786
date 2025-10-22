@@ -1,4 +1,3 @@
-//your JS code here. If required.
 const heading = document.createElement('h1');
 heading.id = 'verification_heading';
 heading.innerText = 'Verify Your Account';
@@ -10,17 +9,19 @@ document.body.appendChild(subheading);
 const container = document.createElement('div');
 container.className = 'code-container';
 document.body.appendChild(container);
+
 for (let i = 0; i < 6; i++) {
     const input = document.createElement('input');
     input.type = 'text';
     input.maxLength = 1;
     input.className = 'code';
+    input.id = `code-${i + 1}`; // <-- Add ID for Cypress test
     container.appendChild(input);
 }
 
 const inputs = document.querySelectorAll('.code');
-
 inputs.forEach((input, index) => {
+    // On input
     input.addEventListener('input', (e) => {
         const value = e.target.value;
         if (/[^0-9]/.test(value)) {
